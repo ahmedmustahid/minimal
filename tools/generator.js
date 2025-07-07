@@ -195,7 +195,7 @@ const renderBlog = (folders, destination, root, page) => {
         const folder = folders.shift();
         const item = loadPost(`content/blog/${folder}/index.html`);
         if (item && (item.state === "post" || environment !== "production")) {
-            item.url = `blog/${folder}/`;
+            item.url = `blog/${folder.toLowerCase()}/`;
             if ("date" in item) {
                 const date = new Date(`${item.date.split(/ \+| -/)[0]}Z`);
                 item.date = formatDate(date, "user");
@@ -242,7 +242,7 @@ const renderFeed = (source, destination) => {
         const folder = folders.shift();
         const item = loadPost(`content/blog/${folder}/index.html`);
         if (item && (item.state === "post" || environment !== "production")) {
-            item.url = `${host}/blog/${folder}/`;
+            item.url = `${host}/blog/${folder.toLowerCase()}/`;
             if (!item.author || item.author === configuration.name) {
                 item.author = false;
             }
