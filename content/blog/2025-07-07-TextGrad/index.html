@@ -26,7 +26,7 @@ date: 2025-07-07 12:00:00 -08:00
 
 <script>
 // Hide preview content and static title/date on individual blog post page
-if (window.location.pathname.includes('/blog/2025-07-07-TextGrad/')) {
+if (window.location.pathname.includes('/blog/2025-07-07-textgrad/') || window.location.pathname.includes('/blog/2025-07-07-TextGrad/')) {
     const previewContent = document.getElementById('preview-content');
     const staticDate = document.querySelector('.full-post-content [data-key="date"]');
     const staticTitle = document.querySelector('.full-post-content h1');
