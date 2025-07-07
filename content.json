@@ -1,8 +1,8 @@
 {
   "theme": "default",
-  "name": "John Smith",
+  "name": "Ahmed Mustahid",
   "bio": "I explore, I work, and I have hobbies.",
-  "description": "Detailed description for search engines.",
+  "description": "Ahmed Mustahid is a software engineer and technology enthusiast who explores machine learning, artificial intelligence, and modern development practices. He writes about cutting-edge frameworks,optimization techniques, and the intersection of mathematics and programming.",
   "host": "https://ahmedmustahid.netlify.app",
   "analytics": "<script type=\"text/javascript\"></script>",
   "feeds": [

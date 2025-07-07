@@ -115,6 +115,9 @@ window.addEventListener("load", function () {
         if (contentElement) {
           contentElement.innerHTML = htmlContent;
           console.log("Content injected successfully");
+          
+          // --- Add copy buttons to code blocks ---
+          addCopyButtonsToCodeBlocks(contentElement);
         } else {
           console.error("Content element not found");
         }
@@ -133,6 +136,9 @@ window.addEventListener("load", function () {
         if (contentElement) {
           contentElement.innerHTML = htmlContent;
           console.log("Content injected successfully (without LaTeX)");
+          
+          // --- Add copy buttons to code blocks ---
+          addCopyButtonsToCodeBlocks(contentElement);
         } else {
           console.error("Content element not found");
         }
@@ -146,3 +152,67 @@ window.addEventListener("load", function () {
         `<p>Failed to load post. Please check the console for details.</p>`;
     });
 });
+
+// Function to add copy buttons to code blocks
+function addCopyButtonsToCodeBlocks(container) {
+  const codeBlocks = container.querySelectorAll('pre code');
+  
+  codeBlocks.forEach((codeBlock) => {
+    const pre = codeBlock.parentElement;
+    
+    // Create wrapper div
+    const wrapper = document.createElement('div');
+    wrapper.style.position = 'relative';
+    
+    // Create copy button
+    const copyButton = document.createElement('button');
+    copyButton.textContent = 'Copy';
+    copyButton.style.cssText = `
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #333;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 12px;
+      z-index: 1;
+    `;
+    
+    // Add hover effect
+    copyButton.addEventListener('mouseenter', () => {
+      copyButton.style.background = '#555';
+    });
+    
+    copyButton.addEventListener('mouseleave', () => {
+      copyButton.style.background = '#333';
+    });
+    
+    // Add click handler
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(codeBlock.textContent);
+        copyButton.textContent = 'Copied!';
+        copyButton.style.background = '#4CAF50';
+        
+        setTimeout(() => {
+          copyButton.textContent = 'Copy';
+          copyButton.style.background = '#333';
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+        copyButton.textContent = 'Failed';
+        setTimeout(() => {
+          copyButton.textContent = 'Copy';
+        }, 2000);
+      }
+    });
+    
+    // Wrap the pre element and add button
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+    wrapper.appendChild(copyButton);
+  });
+}
