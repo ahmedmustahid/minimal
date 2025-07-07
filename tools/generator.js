@@ -24,6 +24,9 @@ const entityMap = {
 };
 
 const escapeHtml = (text) => {
+    if (text == null || text === undefined) {
+        return '';
+    }
     return text.replace(/[&<>"'`=/]/g, (char) => entityMap[char]);
 };
 
