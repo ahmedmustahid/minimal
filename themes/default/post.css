@@ -54,6 +54,15 @@ body { background-color: #1b1b1b; }
 .post .content table, th, td { border-color: 1px solid #cccccc; color: #cccccc; }
 .post .content th { background-color: #cccccc; color: #1b1b1b; border-color: #1b1b1b; }
 }
+
+/* Center align images in blog posts */
+.post .content img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+}
 @media only screen and (min-device-pixel-ratio:2), only screen and (min-resolution:2dppx), only screen and (-webkit-min-device-pixel-ratio:2) {
 .post .content a, .post p a:visited, .post p a:link, .post p a:active { background-size: 2px 1px; }
 }
